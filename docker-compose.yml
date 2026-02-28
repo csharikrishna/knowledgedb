@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  knowledgedb:
+    build: .
+    container_name: knowledgedb
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - JWT_SECRET=change-this-to-a-long-random-secret
+      - ADMIN_EMAIL=admin@knowledgedb.io
+      - ADMIN_PASSWORD=admin123456
+    volumes:
+      - kdb_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  kdb_data:

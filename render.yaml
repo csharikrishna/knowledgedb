@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: knowledgedb
+    env: node
+    plan: free
+    buildCommand: npm ci --production
+    startCommand: node server/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: admin@knowledgedb.io
+      - key: ADMIN_PASSWORD
+        value: admin123456
+    disk:
+      name: kdb-data
+      mountPath: /app/data
+      sizeGB: 1
